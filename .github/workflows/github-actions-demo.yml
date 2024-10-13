@@ -11,8 +11,7 @@ jobs:
       with:
         ruby-version: 2.7
     - name: Install dependencies
-      run: |
-        gem install bundler
+      run:
         bundle install
     - name: Run tests
       run: bundle exec rspec

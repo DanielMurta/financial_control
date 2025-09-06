@@ -1,8 +1,7 @@
 class SayController < ApplicationController
   def hello
-    @time = Time.now
+    @time = Time.zone.now
   end
 
-  def goodbye
-  end
+  def goodbye; end
 end

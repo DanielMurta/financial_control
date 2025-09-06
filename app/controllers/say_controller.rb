@@ -1,8 +1,8 @@
-# class SayController < ApplicationController
-#   def hello
-#     @time = Time.now
-#   end
+class SayController < ApplicationController
+  def hello
+    @time = Time.now
+  end
 
-#   def goodbye
-#   end
-# end
+  def goodbye
+  end
+end

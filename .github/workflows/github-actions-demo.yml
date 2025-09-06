@@ -12,7 +12,7 @@ jobs:
           - 5432:5432
         env:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: 1234
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRESQL_PASSWORD }}
 
     steps:
     - uses: actions/checkout@v2
@@ -28,6 +28,7 @@ jobs:
         bundle exec rails db:create db:schema:load
       env:
         RAILS_ENV: test
-        DATABASE_URL: postgres://postgres:1234@localhost:5432/financial_control_test
+        DATABASE_URL: postgres://postgres:${{ secrets.POSTGRESQL_PASSWORD }}@localhost:5432/financial_control_test
+        POSTGRESQL_PASSWORD: ${{ secrets.POSTGRESQL_PASSWORD }}
     - name: Run tests
       run: bundle exec rspec

@@ -25,7 +25,6 @@ jobs:
         bundle install
     - name: Set up database
       run: |
-        cp config/database.yml
         bundle exec rails db:create db:schema:load
       env:
         RAILS_ENV: test

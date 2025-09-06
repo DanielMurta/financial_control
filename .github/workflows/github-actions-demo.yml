@@ -1,0 +1,35 @@
+name: Run RSpec tests
+on: [push, pull_request]
+jobs:
+  build:
+    name: Run RSpec tests
+    runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: postgres:14
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRESQL_PASSWORD }}
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.3.1
+    - name: Install dependencies
+      run: bundle install
+    - name: Set up database
+      run: |
+        bundle exec rails db:create db:schema:load
+      env:
+        RAILS_ENV: test
+        DATABASE_PASSWORD: ${{ secrets.POSTGRESQL_PASSWORD }}
+    - name: Run tests
+      run: bundle exec rspec
+      env:
+        RAILS_ENV: test
+        DATABASE_PASSWORD: ${{ secrets.POSTGRESQL_PASSWORD }}

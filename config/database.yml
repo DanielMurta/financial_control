@@ -2,7 +2,7 @@ development:
   database: financial_control
   adapter: postgresql
   username: postgres
-  password: ENV['POSTGRESQL_PASSWORD']
+  password: <%= ENV['DATABASE_PASSWORD'] %>
   host: localhost
   encoding: utf8
 
@@ -10,7 +10,7 @@ test:
   database: financial_control_test
   adapter: postgresql
   username: postgres
-  password: ENV['POSTGRESQL_PASSWORD']
+  password: <%= ENV['DATABASE_PASSWORD'] %>
   host: localhost
   encoding: utf8
 
@@ -18,6 +18,6 @@ production:
   database: financial_control
   adapter: postgresql
   username: postgres
-  password: ENV['POSTGRESQL_PASSWORD']
+  password: <%= ENV['DATABASE_PASSWORD'] %>
   host: localhost
   encoding: utf8

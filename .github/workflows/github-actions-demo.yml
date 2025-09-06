@@ -28,7 +28,7 @@ jobs:
         bundle exec rails db:create db:schema:load
       env:
         RAILS_ENV: test
-        DATABASE_URL: postgres://postgres:${{ secrets.POSTGRESQL_PASSWORD }}@localhost:5432/financial_control_test
         POSTGRESQL_PASSWORD: ${{ secrets.POSTGRESQL_PASSWORD }}
+        DATABASE_PASSWORD: ${{ secrets.POSTGRESQL_PASSWORD }}
     - name: Run tests
       run: bundle exec rspec

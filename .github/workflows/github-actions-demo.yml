@@ -32,3 +32,6 @@ jobs:
         DATABASE_PASSWORD: ${{ secrets.POSTGRESQL_PASSWORD }}
     - name: Run tests
       run: bundle exec rspec
+      env:
+        RAILS_ENV: test
+        DATABASE_PASSWORD: ${{ secrets.POSTGRESQL_PASSWORD }}

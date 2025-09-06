@@ -1,5 +1,5 @@
 name: Run RSpec tests
-on: [push]
+on: [push, pull_request]
 jobs:
   build:
     name: Run RSpec tests
@@ -7,7 +7,7 @@ jobs:
 
     services:
       db:
-        image: postgres:latest
+        image: postgres:14
         ports:
           - 5432:5432
         env:

@@ -28,6 +28,8 @@ jobs:
       env:
         RAILS_ENV: test
         DATABASE_PASSWORD: ${{ secrets.POSTGRESQL_PASSWORD }}
+    - name: Run RuboCop
+      run: bundle exec rubocop
     - name: Run tests
       run: bundle exec rspec
       env:

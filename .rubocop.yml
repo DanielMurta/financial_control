@@ -5,6 +5,9 @@ plugins:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+Style/Documentation:
+  Enabled: false
+
 AllCops:
   TargetRubyVersion: 3.3
   NewCops: enable

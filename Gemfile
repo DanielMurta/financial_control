@@ -12,6 +12,7 @@ gem 'puma', '~> 5.0'
 gem 'rails', '~> 7.0.4'
 gem 'rspec'
 gem 'rubocop-rails', require: false
+gem 'rubocop-rspec', require: false
 gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'

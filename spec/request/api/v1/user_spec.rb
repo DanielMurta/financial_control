@@ -193,4 +193,47 @@ RSpec.describe 'Api::V1::Users', type: :request do
       end
     end
   end
+
+  describe '#destroy' do
+    subject(:make_request) do
+      delete api_v1_user_path(user)
+    end
+
+    let(:user) { create(:user) }
+
+    it 'deletes the user' do
+      make_request
+      expect(User.find_by(id: user.id)).to be_nil
+    end
+
+    it 'return the correct status' do
+      make_request
+      expect(response).to have_http_status(:ok)
+    end
+
+    context 'when the user does not exist' do
+      subject(:make_request) do
+        delete api_v1_user_path(id: 'non-existent-id')
+      end
+
+      it 'return the correct status' do
+        make_request
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it 'return the correct message' do
+        make_request
+        json_response = JSON.parse(response.body)
+
+        expect(json_response['message']).to eq('User not found')
+      end
+
+      it 'returns an empty data' do
+        make_request
+        json_response = JSON.parse(response.body)
+
+        expect(json_response['data']).to be_empty
+      end
+    end
+  end
 end

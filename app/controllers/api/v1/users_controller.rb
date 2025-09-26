@@ -33,6 +33,18 @@ module Api
         end
       end
 
+      def destroy
+        user = User.find_by(id: params[:id])
+
+        render_not_found and return unless user
+
+        if user.destroy
+          render json: { data: {}, message: 'User deleted successfully' }, status: :ok
+        else
+          render json: { data: user.errors, message: 'User not deleted' }, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def user_params

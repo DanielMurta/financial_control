@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.3.1'
 gem 'bootsnap', require: false
+gem 'faker', '~> 3.5.2'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'pg'
@@ -19,7 +20,9 @@ gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
+  gem 'byebug', '~> 12.0'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot_rails', '~> 6.4'
 end
 
 group :development do

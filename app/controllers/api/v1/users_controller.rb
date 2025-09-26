@@ -1,9 +1,9 @@
 module Api
   module V1
     class UsersController < ApplicationController
-      def show
-        user = User.find_by(id: params[:id])
+      before_action :user, only: %i[show update destroy]
 
+      def show
         if user
           render json: { data: user, message: 'User found' }, status: :ok
         else
@@ -22,8 +22,6 @@ module Api
       end
 
       def update
-        user = User.find_by(id: params[:id])
-
         render_not_found and return unless user
 
         if user.update(user_update_params)
@@ -34,8 +32,6 @@ module Api
       end
 
       def destroy
-        user = User.find_by(id: params[:id])
-
         render_not_found and return unless user
 
         if user.destroy
@@ -57,6 +53,10 @@ module Api
 
       def render_not_found
         render json: { data: {}, message: 'User not found' }, status: :not_found
+      end
+
+      def user
+        User.find_by(id: params[:id])
       end
     end
   end
